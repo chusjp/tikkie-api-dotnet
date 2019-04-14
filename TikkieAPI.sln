@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28729.10
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TikkieAPI", "TikkieAPI\TikkieAPI.csproj", "{BF4FDDCD-70BC-4A04-AA20-80E8D665373C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TikkieAPI", "TikkieAPI\TikkieAPI.csproj", "{BF4FDDCD-70BC-4A04-AA20-80E8D665373C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TikkiePaymentRequestAPI", "TikkiePaymentRequestAPI\TikkiePaymentRequestAPI.csproj", "{E9A4BDAE-1E91-44EE-BE8D-212D5D3E7487}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TikkiePaymentRequestAPI.Tests", "TikkiePaymentRequestAPI.Tests\TikkiePaymentRequestAPI.Tests.csproj", "{13DED790-E806-4870-8F93-34700C846DF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{BF4FDDCD-70BC-4A04-AA20-80E8D665373C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF4FDDCD-70BC-4A04-AA20-80E8D665373C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF4FDDCD-70BC-4A04-AA20-80E8D665373C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9A4BDAE-1E91-44EE-BE8D-212D5D3E7487}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9A4BDAE-1E91-44EE-BE8D-212D5D3E7487}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9A4BDAE-1E91-44EE-BE8D-212D5D3E7487}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9A4BDAE-1E91-44EE-BE8D-212D5D3E7487}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13DED790-E806-4870-8F93-34700C846DF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13DED790-E806-4870-8F93-34700C846DF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13DED790-E806-4870-8F93-34700C846DF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13DED790-E806-4870-8F93-34700C846DF4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
