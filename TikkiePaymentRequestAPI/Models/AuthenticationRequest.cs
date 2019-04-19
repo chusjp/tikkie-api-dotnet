@@ -1,25 +1,27 @@
-﻿using Newtonsoft.Json;
-using TikkiePaymentRequestAPI.Constants;
+﻿using System.Collections.Generic;
 
 namespace TikkiePaymentRequestAPI.Models
 {
     public class AuthenticationRequest
     {
+        private const string ClientAssertionType = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer";
+        private const string GrantType = "client_credentials";
+        private const string Scope = "tikkie";
+
+        private readonly string _clientAssertionToken;
+
         public AuthenticationRequest(string clientAssertionToken)
         {
-            ClientAssertion = clientAssertionToken;
+            _clientAssertionToken = clientAssertionToken;
         }
 
-        [JsonProperty("client_assertion")]
-        public string ClientAssertion { get; set; }
-
-        [JsonProperty("client_assertion_type")]
-        public string ClientAssertionType { get; set; } = AuthenticationConstants.ClientAssertionType;
-
-        [JsonProperty("grant_type")]
-        public string GrantType { get; set; } = AuthenticationConstants.GrantType;
-
-        [JsonProperty("scope")]
-        public string Scope { get; set; } = AuthenticationConstants.DefaultScope;
+        public List<KeyValuePair<string, string>> KeyValuePair
+            => new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("client_assertion", _clientAssertionToken),
+                new KeyValuePair<string, string>("client_assertion_type", ClientAssertionType),
+                new KeyValuePair<string, string>("grant_type", GrantType),
+                new KeyValuePair<string, string>("scope", Scope)
+            };
     }
 }

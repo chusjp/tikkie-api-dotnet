@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
 
 namespace TikkiePaymentRequestAPI.Models
 {
@@ -9,7 +8,7 @@ namespace TikkiePaymentRequestAPI.Models
         public string AccessToken { get; set; }
 
         [JsonProperty("expires_in")]
-        public DateTime ExpiresIn { get; set; }
+        public int ExpiresInSeconds { get; set; }
 
         [JsonProperty("scope")]
         public string Scope { get; set; }

@@ -1,12 +1,20 @@
 ﻿using System;
 using System.Security.Cryptography;
-using TikkiePaymentRequestAPI.Constants;
 using TikkiePaymentRequestAPI.Helpers;
 
 namespace TikkiePaymentRequestAPI
 {
     public class Configuration
     {
+        // Environments
+        private const string SandboxApiBaseUrl = "https://api-sandbox.abnamro.com/v1";
+        private const string ProductionApiBaseUrl = "https://api.abnamro.com/v1";
+        private const string SandboxOAuthTokenUrl = "https://auth-sandbox.abnamro.com/oauth/token";
+        private const string ProductionOAuthTokenUrl = "https://auth.abnamro.com/oauth/token";
+
+        private const double DefaultTokenExpirationInMinutes = 10;
+        private const string DefaultIssuerName = "TikkiePaymentRequestAPI Dotnet";
+
         public Configuration(string apiKey, string privateKeyPath, bool useTestEnvironment = false)
         {
             ApiKey = string.IsNullOrEmpty(apiKey) ? throw new ArgumentNullException(nameof(apiKey)) : apiKey;
@@ -18,20 +26,20 @@ namespace TikkiePaymentRequestAPI
 
         public bool IsTestEnvironment { get; }
 
-        public string ApiBaseUrl => IsTestEnvironment ? Environments.SandboxApiBaseUrl : Environments.ProductionApiBaseUrl;
+        public string ApiBaseUrl => IsTestEnvironment ? SandboxApiBaseUrl : ProductionApiBaseUrl;
 
-        public string OAuthTokenUrl => IsTestEnvironment ? Environments.SandboxOAuthTokenUrl : Environments.ProductionOAuthTokenUrl;
+        public string OAuthTokenUrl => IsTestEnvironment ? SandboxOAuthTokenUrl : ProductionOAuthTokenUrl;
 
         public RSACryptoServiceProvider RSAKey { get; }
 
         /// <summary>
         /// The token expiration in minutes after current DateTime.
         /// </summary>
-        public double TokenExpirationInMinutes { get; set; } = AuthenticationConstants.DefaultTokenExpirationInMinutes;
+        public double TokenExpirationInMinutes { get; set; } = DefaultTokenExpirationInMinutes;
 
         /// <summary>
         /// The issuer name passed as claim to the authentication payload.
         /// </summary>
-        public string IssuerName { get; set; } = AuthenticationConstants.DefaultIssuerName;
+        public string IssuerName { get; set; } = DefaultIssuerName;
     }
 }

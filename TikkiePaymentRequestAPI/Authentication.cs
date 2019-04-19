@@ -1,17 +1,18 @@
-﻿using Jose;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
-using TikkiePaymentRequestAPI.Constants;
+using Jose;
+using Newtonsoft.Json;
+using TikkiePaymentRequestAPI.Exceptions;
 using TikkiePaymentRequestAPI.Models;
 
 namespace TikkiePaymentRequestAPI
 {
-    internal class Authentication
+    public class Authentication
     {
+        private const double DefaultNotBeforeAcceptanceInMinutes = 1;
+
         private Configuration _configuration;
 
         public Authentication(Configuration configuration)
@@ -22,31 +23,36 @@ namespace TikkiePaymentRequestAPI
         public async Task<AuthenticationResponse> AuthenticateAsync()
         {
             var request = new AuthenticationRequest(CreateToken());
-            var jsonRequest = JsonConvert.SerializeObject(request);
-            var content = new StringContent(jsonRequest, Encoding.UTF8, "application/x-www-form-urlencoded");
-            content.Headers.Add(AuthenticationConstants.ApiKeyHeaderName, _configuration.ApiKey);
+            var content = new FormUrlEncodedContent(request.KeyValuePair);
+            content.Headers.Add("API-Key", _configuration.ApiKey);
 
             using (var client = new HttpClient())
             {
-                var response = await client.PostAsync("https://api-sandbox.abnamro.com/v1/oauth/token", content);
-                return JsonConvert.DeserializeObject<AuthenticationResponse>(await response.Content.ReadAsStringAsync());
+                var response = await client.PostAsync($"{_configuration.ApiBaseUrl}/oauth/token", content);
+                var authenticationContentString = await response.Content.ReadAsStringAsync();
+                if (!response.IsSuccessStatusCode)
+                {
+                    var errorResponses = JsonConvert.DeserializeObject<ErrorResponses>(authenticationContentString);
+                    throw new TikkieErrorResponseException($"Server status code: {response.StatusCode}", errorResponses.ErrorResponseArray);
+                }
+                return JsonConvert.DeserializeObject<AuthenticationResponse>(authenticationContentString);
             }
         }
 
         private string CreateToken()
         {
-            return JWT.Encode(CreatePayload(), _configuration.RSAKey, JwsAlgorithm.RS256);
+            return JWT.Encode(CreatePayload(), _configuration.RSAKey, JwsAlgorithm.RS256); 
         }
 
         private Dictionary<string, object> CreatePayload()
         {
             return new Dictionary<string, object>
             {
-                { AuthenticationConstants.ExpirationTimeInSecondsClaimName, DateTimeOffset.UtcNow.AddMinutes(_configuration.TokenExpirationInMinutes).ToUnixTimeSeconds() },
-                { AuthenticationConstants.NotBeforeInSecondsClaimName, DateTimeOffset.UtcNow.AddMinutes(-AuthenticationConstants.DefaultNotBeforeAcceptanceInMinutes).ToUnixTimeSeconds() },
-                { AuthenticationConstants.IssuerNameClaimName, _configuration.IssuerName },
-                { AuthenticationConstants.SubjectClaimName, _configuration.ApiKey },
-                { AuthenticationConstants.AudienceClaimName, _configuration.OAuthTokenUrl }
+                { "exp", DateTimeOffset.UtcNow.AddMinutes(_configuration.TokenExpirationInMinutes).ToUnixTimeSeconds() },
+                { "nbf", DateTimeOffset.UtcNow.AddMinutes(-DefaultNotBeforeAcceptanceInMinutes).ToUnixTimeSeconds() },
+                { "iss", _configuration.IssuerName },
+                { "sub", _configuration.ApiKey },
+                { "aud", _configuration.OAuthTokenUrl }
             };
         }
     }

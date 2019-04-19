@@ -15,4 +15,7 @@
     <PackageReference Include="jose-jwt" Version="2.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Exceptions\" />
+  </ItemGroup>
 </Project>
