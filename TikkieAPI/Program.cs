@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using TikkiePaymentRequestAPI;
 using TikkiePaymentRequestAPI.Exceptions;
@@ -14,7 +15,7 @@ namespace TikkieAPI
 
             try
             {
-                var result = await client.GetPlatformsAsync();
+                var platforms = await client.GetPlatformsAsync();
 
                 //var result = await client.CreatePlatformAsync(new TikkiePaymentRequestAPI.Models.PlatformRequest
                 //{
@@ -23,8 +24,22 @@ namespace TikkieAPI
                 //    PhoneNumber = "0617386240",
                 //    Usage = TikkiePaymentRequestAPI.Enums.PlatformUsage.PaymentRequestForMyself
                 //});
+                Console.WriteLine("Platforms:");
+                Console.WriteLine(JsonConvert.SerializeObject(platforms, Formatting.Indented));
 
-                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+                //var user = await client.CreateUserAsync(platforms.First().PlatformToken, new TikkiePaymentRequestAPI.Models.UserRequest
+                //{
+                //    Name = "Chus Second",
+                //    PhoneNumber = "0617386240",
+                //    IBAN = "NL22INGB0689972458",
+                //    BankAccountLabel = "Personal account"
+                //});
+                //Console.WriteLine("Created user:");
+                //Console.WriteLine(JsonConvert.SerializeObject(user, Formatting.Indented));
+
+                var users = await client.GetUsersAsync(platforms.First().PlatformToken);
+                Console.WriteLine("Users:");
+                Console.WriteLine(JsonConvert.SerializeObject(users, Formatting.Indented));
             }
             catch (TikkieErrorResponseException ex)
             {

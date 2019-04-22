@@ -3,7 +3,6 @@ using Newtonsoft.Json;
 
 namespace TikkiePaymentRequestAPI.Models
 {
-
     public class ErrorResponse
     {
         /// <summary>

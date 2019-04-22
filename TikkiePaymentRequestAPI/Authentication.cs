@@ -23,7 +23,7 @@ namespace TikkiePaymentRequestAPI
 
         public AuthorizationToken AuthorizationToken { get; }
 
-        public async Task AuthenticateIfExpired()
+        public async Task AuthenticateIfTokenExpiredAsync()
         {
             if (AuthorizationToken.IsTokenExpired)
             {

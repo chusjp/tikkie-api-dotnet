@@ -22,7 +22,7 @@ namespace TikkiePaymentRequestAPI
 
         public async Task<TResponse> GetOrExceptionAsync<TResponse>(string urlSuffix)
         {
-            await _authentication.AuthenticateIfExpired();
+            await _authentication.AuthenticateIfTokenExpiredAsync();
             using (var client = new HttpClient())
             {
                 AddDefaultRequestHeaders(client);
@@ -33,7 +33,7 @@ namespace TikkiePaymentRequestAPI
 
         public async Task<TResponse> PostOrExceptionAsync<TResponse>(string urlSuffix, HttpContent content)
         {
-            await _authentication.AuthenticateIfExpired();
+            await _authentication.AuthenticateIfTokenExpiredAsync();
             using (var client = new HttpClient())
             {
                 AddDefaultRequestHeaders(client);
