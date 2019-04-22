@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace TikkiePaymentRequestAPI
 {
-    internal class Request
+    internal class RequestsHandler
     {
         //public Task<TResponse> Get<TRequest, TResponse>(TRequest request)
         //{

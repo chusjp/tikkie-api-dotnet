@@ -12,9 +12,9 @@ namespace TikkiePaymentRequestAPI
 
         public Configuration Configuration { get; set; }
 
-        public PlatformCreateResponse CreatePlatform(PlatformCreateRequest request)
+        public PlatformResponse CreatePlatform(PlatformRequest request)
         {
-            return new PlatformCreateResponse();
+            return new PlatformResponse();
         }
     }
 }

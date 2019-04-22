@@ -9,7 +9,7 @@ namespace TikkiePaymentRequestAPI.Helpers
 {
     internal class RSAFromPemFile
     {
-        public static RSACryptoServiceProvider PrivateKeyFromPemFile(String privateKeyPemFilePath)
+        public static RSACryptoServiceProvider PrivateKeyFromPemFile(string privateKeyPemFilePath)
         {
             var privateKey = File.ReadAllText(privateKeyPemFilePath);
             using (TextReader privateKeyTextReader = new StringReader(privateKey))
