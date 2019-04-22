@@ -38,7 +38,6 @@ namespace TikkiePaymentRequestAPI
             {
                 AddDefaultRequestHeaders(client);
                 var response = await client.PostAsync($"{_configuration.ApiBaseUrl}{urlSuffix}", content);
-
                 return await response.GetContentObjectOrExceptionAsync<TResponse>();
             }
         }

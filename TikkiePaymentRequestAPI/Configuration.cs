@@ -18,7 +18,7 @@ namespace TikkiePaymentRequestAPI
         public Configuration(string apiKey, string privateKeyPath, bool useTestEnvironment = false)
         {
             ApiKey = string.IsNullOrEmpty(apiKey) ? throw new ArgumentNullException(nameof(apiKey)) : apiKey;
-            RSAKey = RSAFromPemFile.PrivateKeyFromPemFile(privateKeyPath);
+            RSAKey = RSAUtilities.GetPrivateKeyFromPemFile(privateKeyPath);
             IsTestEnvironment = useTestEnvironment;
         }
 

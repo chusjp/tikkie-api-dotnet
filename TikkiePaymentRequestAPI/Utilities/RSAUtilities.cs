@@ -7,9 +7,9 @@ using System.Security.Cryptography;
 
 namespace TikkiePaymentRequestAPI.Utilities
 {
-    internal class RSAFromPemFile
+    internal class RSAUtilities
     {
-        public static RSACryptoServiceProvider PrivateKeyFromPemFile(string privateKeyPemFilePath)
+        public static RSACryptoServiceProvider GetPrivateKeyFromPemFile(string privateKeyPemFilePath)
         {
             var privateKey = File.ReadAllText(privateKeyPemFilePath);
             using (TextReader privateKeyTextReader = new StringReader(privateKey))
