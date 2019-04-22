@@ -49,6 +49,6 @@ namespace TikkiePaymentRequestAPI
             httpClient.DefaultRequestHeaders.Add("API-Key", _configuration.ApiKey);
         }
 
-        private string Authorization => $"{_authentication.AuthorizationToken?.TokenType} {_authentication.AuthorizationToken?.AccessToken}";
+        private string Authorization => $"{_authentication.AuthorizationToken.TokenType} {_authentication.AuthorizationToken.AccessToken}";
     }
 }
