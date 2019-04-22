@@ -2,7 +2,7 @@
 
 namespace TikkiePaymentRequestAPI.Models
 {
-    public class AuthenticationRequest
+    internal class AuthenticationRequest
     {
         private const string ClientAssertionType = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer";
         private const string GrantType = "client_credentials";

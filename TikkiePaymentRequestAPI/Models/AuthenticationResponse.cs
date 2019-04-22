@@ -2,7 +2,7 @@
 
 namespace TikkiePaymentRequestAPI.Models
 {
-    public class AuthenticationResponse
+    internal class AuthenticationResponse
     {
         [JsonProperty("access_token")]
         public string AccessToken { get; set; }
