@@ -38,6 +38,7 @@ namespace TikkiePaymentRequestAPI.Models
         /// The type of usage for this platform.
         /// Required.
         /// </summary>
+        [JsonIgnore]
         public PlatformUsage Usage { get; set; }
 
         /// <summary>

@@ -7,11 +7,6 @@ namespace TikkiePaymentRequestAPI.Models
     public class PlatformResponse
     {
         /// <summary>
-        /// Unique id generated for every request.
-        /// </summary>
-        public Guid TraceId { get; set; }
-
-        /// <summary>
         /// The name of the new platform.
         /// </summary>
         [JsonProperty("name")]
@@ -50,12 +45,19 @@ namespace TikkiePaymentRequestAPI.Models
         /// <summary>
         /// The current status of the new platform.
         /// </summary>
+        [JsonIgnore]
         public Status Status => StatusString.MapToStatusEnum();
 
+        /// <summary>
+        /// The type of usage for this platform as string.
+        /// </summary>
+        [JsonProperty("platformUsage")]
+        public string UsageString { get; set; }
 
         /// <summary>
         /// The type of usage for this platform.
         /// </summary>
-        public PlatformUsage Usage { get; set; }
+        [JsonIgnore]
+        public PlatformUsage Usage => UsageString.MapToPlatformUsageEnum();
     }
 }

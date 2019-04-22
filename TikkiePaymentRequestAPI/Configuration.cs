@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Security.Cryptography;
-using TikkiePaymentRequestAPI.Helpers;
+using TikkiePaymentRequestAPI.Utilities;
 
 namespace TikkiePaymentRequestAPI
 {
@@ -13,7 +13,7 @@ namespace TikkiePaymentRequestAPI
         private const string ProductionOAuthTokenUrl = "https://auth.abnamro.com/oauth/token";
 
         private const double DefaultTokenExpirationInMinutes = 10;
-        private const string DefaultIssuerName = "TikkiePaymentRequestAPI Dotnet";
+        private const string DefaultIssuerName = "TikkieAPI Dotnet";
 
         public Configuration(string apiKey, string privateKeyPath, bool useTestEnvironment = false)
         {
@@ -24,7 +24,7 @@ namespace TikkiePaymentRequestAPI
 
         public string ApiKey { get; }
 
-        public bool IsTestEnvironment { get; }
+        public bool IsTestEnvironment { get; set; }
 
         public string ApiBaseUrl => IsTestEnvironment ? SandboxApiBaseUrl : ProductionApiBaseUrl;
 

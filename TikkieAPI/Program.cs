@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Threading.Tasks;
 using TikkiePaymentRequestAPI;
 using TikkiePaymentRequestAPI.Exceptions;
@@ -9,16 +10,21 @@ namespace TikkieAPI
     {
         static async Task Main(string[] args)
         {
-            var authenticate = new Authentication(new Configuration("NDIejJkCWtO46nOM34m7z5ExJ1djRbOe", "private_rsa.pem", true));
+            var client = new TikkieClient(new Configuration("NDIejJkCWtO46nOM34m7z5ExJ1djRbOe", "private_rsa.pem", true));
 
             try
             {
-                var result = await authenticate.AuthenticateAsync();
+                var result = await client.GetPlatformsAsync();
 
-                Console.WriteLine($"Token: {result.AccessToken}");
-                Console.WriteLine($"Expires in: {result.ExpiresInSeconds}");
-                Console.WriteLine($"Scope: {result.Scope}");
-                Console.WriteLine($"Token Type: {result.TokenType}");
+                //var result = await client.CreatePlatformAsync(new TikkiePaymentRequestAPI.Models.PlatformRequest
+                //{
+                //    Name = "Test platform",
+                //    Email = "client@platform.com",
+                //    PhoneNumber = "0617386240",
+                //    Usage = TikkiePaymentRequestAPI.Enums.PlatformUsage.PaymentRequestForMyself
+                //});
+
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             catch (TikkieErrorResponseException ex)
             {

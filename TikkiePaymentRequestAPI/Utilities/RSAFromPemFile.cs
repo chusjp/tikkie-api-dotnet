@@ -5,7 +5,7 @@ using System;
 using System.IO;
 using System.Security.Cryptography;
 
-namespace TikkiePaymentRequestAPI.Helpers
+namespace TikkiePaymentRequestAPI.Utilities
 {
     internal class RSAFromPemFile
     {

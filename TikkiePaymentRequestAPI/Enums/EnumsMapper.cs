@@ -14,7 +14,7 @@ namespace TikkiePaymentRequestAPI.Enums
             }
         }
 
-        public static PlatformUsage MapToPlatFormUsageEnum(this string platformUsageString)
+        public static PlatformUsage MapToPlatformUsageEnum(this string platformUsageString)
         {
             switch (platformUsageString)
             {
