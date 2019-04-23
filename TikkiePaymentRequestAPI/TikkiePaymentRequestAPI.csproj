@@ -17,6 +17,5 @@
 
   <ItemGroup>
     <Folder Include="Exceptions\" />
-    <Folder Include="Enums\" />
   </ItemGroup>
 </Project>

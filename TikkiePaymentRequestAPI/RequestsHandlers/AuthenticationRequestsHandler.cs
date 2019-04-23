@@ -3,19 +3,19 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using TikkiePaymentRequestAPI.Constants;
 using TikkiePaymentRequestAPI.Models;
 using TikkiePaymentRequestAPI.Utilities;
 
-namespace TikkiePaymentRequestAPI
+namespace TikkiePaymentRequestAPI.RequestsHandlers
 {
-    internal class Authentication
+    internal class AuthenticationRequestsHandler
     {
-        private const string AuthenticationUrl = "/oauth/token";
         private const double DefaultNotBeforeAcceptanceInMinutes = -1;
 
-        private Configuration _configuration;
+        private TikkieConfiguration _configuration;
 
-        public Authentication(Configuration configuration)
+        public AuthenticationRequestsHandler(TikkieConfiguration configuration)
         {
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
             AuthorizationToken = new AuthorizationToken();
@@ -42,7 +42,7 @@ namespace TikkiePaymentRequestAPI
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Add("API-Key", _configuration.ApiKey);
-                var response = await client.PostAsync($"{_configuration.ApiBaseUrl}{AuthenticationUrl}", content);
+                var response = await client.PostAsync($"{_configuration.ApiBaseUrl}{Urls.AuthenticationUrlSuffix}", content);
 
                 return await response.GetContentObjectOrExceptionAsync<AuthenticationResponse>();
             }

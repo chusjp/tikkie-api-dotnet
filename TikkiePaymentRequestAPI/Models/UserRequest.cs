@@ -5,6 +5,12 @@ namespace TikkiePaymentRequestAPI.Models
     public class UserRequest
     {
         /// <summary>
+        /// Identifies to which platform the new user is enrolled.
+        /// </summary>
+        [JsonIgnore]
+        public string PlatformToken { get; set; }
+
+        /// <summary>
         /// Name of the new user. Length: 2-70 characters.
         /// Required.
         /// </summary> 

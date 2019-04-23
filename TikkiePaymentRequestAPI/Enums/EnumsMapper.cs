@@ -24,23 +24,73 @@ namespace TikkiePaymentRequestAPI.Enums
             }
         }
 
-        public static string MapToString(this Status status)
+        public static string MapToString(this PlatformStatus platformStatus)
         {
-            switch (status)
+            switch (platformStatus)
             {
-                case Status.Active: return "ACTIVE";
-                case Status.Inactive: return "INACTIVE";
-                default: throw new ArgumentException($"Not recognized {nameof(status)}");
+                case PlatformStatus.Active: return "ACTIVE";
+                case PlatformStatus.Inactive: return "INACTIVE";
+                default: throw new ArgumentException($"Not recognized {nameof(platformStatus)}");
             }
         }
 
-        public static Status MapToStatusEnum(this string statusString)
+        public static PlatformStatus MapToPlatformStatusEnum(this string platformStatusString)
         {
-            switch (statusString)
+            switch (platformStatusString)
             {
-                case "ACTIVE": return Status.Active;
-                case "INACTIVE": return Status.Inactive;
-                default: throw new ArgumentException($"Not recognized {nameof(statusString)}");
+                case "ACTIVE": return PlatformStatus.Active;
+                case "INACTIVE": return PlatformStatus.Inactive;
+                default: throw new ArgumentException($"Not recognized {nameof(platformStatusString)}");
+            }
+        }
+
+        public static string MapToString(this PaymentRequestStatus paymentRequestStatus)
+        {
+            switch (paymentRequestStatus)
+            {
+                case PaymentRequestStatus.Open: return "OPEN";
+                case PaymentRequestStatus.Closed: return "CLOSED";
+                case PaymentRequestStatus.Expired: return "EXPIRED";
+                case PaymentRequestStatus.MaxYieldReached: return "MAX_YIELD_REACHED";
+                case PaymentRequestStatus.MaxSuccessfulPaymentsReached: return "MAX_SUCCESSFUL_PAYMENTS_REACHED";
+                default: throw new ArgumentException($"Not recognized {nameof(paymentRequestStatus)}");
+            }
+        }
+
+        public static PaymentRequestStatus MapToPaymentRequestStatusEnum(this string paymentRequestStatusString)
+        {
+            switch (paymentRequestStatusString)
+            {
+                case "OPEN": return PaymentRequestStatus.Open;
+                case "CLOSED": return PaymentRequestStatus.Closed;
+                case "EXPIRED": return PaymentRequestStatus.Expired;
+                case "MAX_YIELD_REACHED": return PaymentRequestStatus.MaxYieldReached;
+                case "MAX_SUCCESSFUL_PAYMENTS_REACHED": return PaymentRequestStatus.MaxSuccessfulPaymentsReached;
+                default: throw new ArgumentException($"Not recognized {nameof(paymentRequestStatusString)}");
+            }
+        }
+
+        public static string MapToString(this OnlinePaymentStatus onlinePaymentStatus)
+        {
+            switch (onlinePaymentStatus)
+            {
+                case OnlinePaymentStatus.New: return "NEW";
+                case OnlinePaymentStatus.Pending: return "PENDING";
+                case OnlinePaymentStatus.Paid: return "PAID";
+                case OnlinePaymentStatus.NotPaid: return "NOT_PAID";
+                default: throw new ArgumentException($"Not recognized {nameof(onlinePaymentStatus)}");
+            }
+        }
+
+        public static OnlinePaymentStatus MapToOnlinePaymentStatusEnum(this string onlinePaymentStatusString)
+        {
+            switch (onlinePaymentStatusString)
+            {
+                case "NEW": return OnlinePaymentStatus.New;
+                case "PENDING": return OnlinePaymentStatus.Pending;
+                case "PAID": return OnlinePaymentStatus.Paid;
+                case "NOT_PAID": return OnlinePaymentStatus.NotPaid;
+                default: throw new ArgumentException($"Not recognized {nameof(onlinePaymentStatusString)}");
             }
         }
     }

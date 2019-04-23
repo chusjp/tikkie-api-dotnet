@@ -11,7 +11,7 @@ namespace TikkieAPI
     {
         static async Task Main(string[] args)
         {
-            var client = new TikkieClient(new Configuration("NDIejJkCWtO46nOM34m7z5ExJ1djRbOe", "private_rsa.pem", true));
+            var client = new TikkieClient(new TikkieConfiguration("NDIejJkCWtO46nOM34m7z5ExJ1djRbOe", "private_rsa.pem", true));
 
             try
             {
@@ -40,6 +40,37 @@ namespace TikkieAPI
                 var users = await client.GetUsersAsync(platforms.First().PlatformToken);
                 Console.WriteLine("Users:");
                 Console.WriteLine(JsonConvert.SerializeObject(users, Formatting.Indented));
+
+                //var paymentCreationResult = await client.CreatePaymentRequestAsync(new TikkiePaymentRequestAPI.Models.PaymentRequest
+                //{
+                //    PlatformToken = platforms.First().PlatformToken,
+                //    UserToken = users.First().UserToken,
+                //    BankAccountToken = users.First().BankAccounts.First().Token,
+                //    AmountInCents = 100,
+                //    Currency = "EUR",
+                //    Description = "My second payment request from API",
+                //    ExternalId = "Invoice: Test"
+                //});
+                //Console.WriteLine("Payment Creation Result:");
+                //Console.WriteLine(JsonConvert.SerializeObject(paymentCreationResult, Formatting.Indented));
+
+                var userPaymentRequests = await client.GetUserPaymentRequestsAsync(new TikkiePaymentRequestAPI.Models.UserPaymentRequest
+                {
+                    PlatformToken = platforms.First().PlatformToken,
+                    UserToken = users.First().UserToken,
+                    Limit = 100
+                });
+                Console.WriteLine("User Payment Requests Result:");
+                Console.WriteLine(JsonConvert.SerializeObject(userPaymentRequests, Formatting.Indented));
+
+                var singlePaymentRequest = await client.GetPaymentRequestAsync(new TikkiePaymentRequestAPI.Models.SinglePaymentRequest
+                {
+                    PlatformToken = platforms.First().PlatformToken,
+                    UserToken = users.First().UserToken,
+                    PaymentRequestToken = userPaymentRequests.PaymentRequests.First().PaymentRequestToken
+                });
+                Console.WriteLine("Single Payment Request Result:");
+                Console.WriteLine(JsonConvert.SerializeObject(singlePaymentRequest, Formatting.Indented));
             }
             catch (TikkieErrorResponseException ex)
             {

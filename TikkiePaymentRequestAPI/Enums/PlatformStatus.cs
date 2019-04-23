@@ -1,6 +1,6 @@
 ﻿namespace TikkiePaymentRequestAPI.Enums
 {
-    public enum Status
+    public enum PlatformStatus
     {
         Active,
         Inactive
