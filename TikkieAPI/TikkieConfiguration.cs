@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Security.Cryptography;
-using TikkieAPI.Constants;
 using TikkieAPI.Utilities;
 
 namespace TikkieAPI
@@ -21,9 +20,9 @@ namespace TikkieAPI
 
         public bool IsTestEnvironment { get; set; }
 
-        public string ApiBaseUrl => IsTestEnvironment ? Urls.SandboxApiBaseUrl : Urls.ProductionApiBaseUrl;
+        public string ApiBaseUrl => IsTestEnvironment ? UrlProvider.SandboxApiBaseUrl : UrlProvider.ProductionApiBaseUrl;
 
-        public string OAuthTokenUrl => IsTestEnvironment ? Urls.SandboxOAuthTokenUrl : Urls.ProductionOAuthTokenUrl;
+        public string OAuthTokenUrl => IsTestEnvironment ? UrlProvider.SandboxOAuthTokenUrl : UrlProvider.ProductionOAuthTokenUrl;
 
         public RSACryptoServiceProvider RSAKey { get; }
 

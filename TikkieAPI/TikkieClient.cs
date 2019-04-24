@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using TikkieAPI.Models;
 using TikkieAPI.RequestsHandlers;
 
+[assembly: InternalsVisibleTo("TikkieAPI.Tests")]
 namespace TikkieAPI
 {
     public class TikkieClient

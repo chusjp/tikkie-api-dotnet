@@ -23,8 +23,8 @@ namespace TikkieAPI.Utilities
 
                 var privateKeyParams = asymmetricKeyPair.Private as RsaPrivateCrtKeyParameters;
 
-                RSACryptoServiceProvider cryptoServiceProvider = new RSACryptoServiceProvider();
-                RSAParameters rsaParameters = ToRSAParameters(privateKeyParams);
+                var cryptoServiceProvider = new RSACryptoServiceProvider();
+                var rsaParameters = ToRSAParameters(privateKeyParams);
                 cryptoServiceProvider.ImportParameters(rsaParameters);
 
                 return cryptoServiceProvider;

@@ -3,8 +3,8 @@ using System;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using TikkieAPI.Constants;
 using TikkieAPI.Models;
+using TikkieAPI.Utilities;
 
 namespace TikkieAPI.RequestsHandlers
 {
@@ -20,7 +20,7 @@ namespace TikkieAPI.RequestsHandlers
         public async Task<UserResponse[]> GetUsersAsync(string platformToken)
         {
             return await _authorizedRequestsHandler
-                .GetOrExceptionAsync<UserResponse[]>(Urls.UserUrlSuffix(platformToken));
+                .GetOrExceptionAsync<UserResponse[]>(UrlProvider.UserUrlSuffix(platformToken));
         }
 
         public async Task<UserResponse> CreateUserAsync(UserRequest request)
@@ -29,7 +29,7 @@ namespace TikkieAPI.RequestsHandlers
             var content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
 
             return await _authorizedRequestsHandler
-                .PostOrExceptionAsync<UserResponse>(Urls.UserUrlSuffix(request.PlatformToken), content);
+                .PostOrExceptionAsync<UserResponse>(UrlProvider.UserUrlSuffix(request.PlatformToken), content);
         }
     }
 }

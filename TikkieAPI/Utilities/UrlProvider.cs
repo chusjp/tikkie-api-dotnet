@@ -1,6 +1,6 @@
-﻿namespace TikkieAPI.Constants
+﻿namespace TikkieAPI.Utilities
 {
-    internal static class Urls
+    internal static class UrlProvider
     {
         /// <summary>
         /// Base url for development/sandbox Tikkie API.

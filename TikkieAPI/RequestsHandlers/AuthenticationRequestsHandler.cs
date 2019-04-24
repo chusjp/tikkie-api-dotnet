@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using TikkieAPI.Constants;
 using TikkieAPI.Models;
 using TikkieAPI.Utilities;
 
@@ -42,7 +41,7 @@ namespace TikkieAPI.RequestsHandlers
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Add("API-Key", _configuration.ApiKey);
-                var response = await client.PostAsync($"{_configuration.ApiBaseUrl}{Urls.AuthenticationUrlSuffix}", content);
+                var response = await client.PostAsync($"{_configuration.ApiBaseUrl}{UrlProvider.AuthenticationUrlSuffix}", content);
 
                 return await response.GetContentObjectOrExceptionAsync<AuthenticationResponse>();
             }

@@ -3,8 +3,8 @@ using System;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using TikkieAPI.Constants;
 using TikkieAPI.Models;
+using TikkieAPI.Utilities;
 
 namespace TikkieAPI.RequestsHandlers
 {
@@ -28,7 +28,7 @@ namespace TikkieAPI.RequestsHandlers
             var content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
 
             return await _authorizedRequestsHandler
-                .PostOrExceptionAsync<PaymentResponse>(Urls.PaymentCreationUrlSuffix(request.PlatformToken, request.UserToken, request.BankAccountToken), content);
+                .PostOrExceptionAsync<PaymentResponse>(UrlProvider.PaymentCreationUrlSuffix(request.PlatformToken, request.UserToken, request.BankAccountToken), content);
         }
 
         public async Task<UserPaymentResponse> GetUserPaymentRequestsAsync(UserPaymentRequest request)
@@ -41,7 +41,7 @@ namespace TikkieAPI.RequestsHandlers
             var queryString = GetUserPaymentRequestQueryString(request);
 
             return await _authorizedRequestsHandler
-                .GetOrExceptionAsync<UserPaymentResponse>($"{Urls.GetUserPaymentsUrlSuffix(request.PlatformToken, request.UserToken)}{queryString}");
+                .GetOrExceptionAsync<UserPaymentResponse>($"{UrlProvider.GetUserPaymentsUrlSuffix(request.PlatformToken, request.UserToken)}{queryString}");
         }
 
         public async Task<SinglePaymentRequestResponse> GetPaymentRequestAsync(SinglePaymentRequest request)
@@ -52,7 +52,7 @@ namespace TikkieAPI.RequestsHandlers
             }
 
             return await _authorizedRequestsHandler
-                .GetOrExceptionAsync<SinglePaymentRequestResponse>(Urls.GetPaymentUrlSuffix(request.PlatformToken, request.UserToken, request.PaymentRequestToken));
+                .GetOrExceptionAsync<SinglePaymentRequestResponse>(UrlProvider.GetPaymentUrlSuffix(request.PlatformToken, request.UserToken, request.PaymentRequestToken));
         }
 
         private string GetUserPaymentRequestQueryString(UserPaymentRequest request)
