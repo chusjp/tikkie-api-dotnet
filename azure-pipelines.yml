@@ -16,11 +16,8 @@ variables:
 
 steps:
 - task: NuGetToolInstaller@0
-
-- task: DotNetCoreInstaller@0
   inputs:
-    packageType: sdk
-    version: '2.2.203'
+    versionSpec: '4.9.4'
 
 - task: NuGetCommand@2
   inputs:
