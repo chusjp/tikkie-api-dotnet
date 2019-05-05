@@ -1,6 +1,7 @@
 # Tikkie API .NET
 
 [![Build Status](https://dev.azure.com/chusjp/TikkieAPI/_apis/build/status/chusjp.tikkie-api-dotnet?branchName=master)](https://dev.azure.com/chusjp/TikkieAPI/_build/latest?definitionId=1&branchName=master)
+![Nuget](https://img.shields.io/nuget/v/TikkieAPI.svg)
 [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
 
 Unofficial client implementation for communicating with the **Tikkie API**.
