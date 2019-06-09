@@ -164,7 +164,7 @@ try
     var response = tikkieClient.GetPlatformsAsync();
     // ...
 }
-catch (TikkieErrorResponseException tikkieErrorResponseException)
+catch (TikkieErrorResponseException ex)
 {
     ErrorResponse[] errorResponses = ex.ErrorResponses;
     // Handle exception
