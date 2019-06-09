@@ -40,7 +40,10 @@ namespace TikkieAPI.RequestsHandlers
         /// <param name="authenticationRequestsHandler">The authentication requests handler</param>
         /// <param name="httpClientFactory">Factory to inject the HttpClient</param>
         /// <exception cref="ArgumentNullException">If any of the parameters are null</exception>
-        internal AuthorizedRequestsHandler(ITikkieConfiguration configuration, IAuthenticationRequestsHandler authenticationRequestsHandler, Func<HttpClient> httpClientFactory)
+        internal AuthorizedRequestsHandler(
+            ITikkieConfiguration configuration, 
+            IAuthenticationRequestsHandler authenticationRequestsHandler, 
+            Func<HttpClient> httpClientFactory)
         {
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
             _authenticationRequestsHandler = authenticationRequestsHandler ?? throw new ArgumentNullException(nameof(authenticationRequestsHandler));

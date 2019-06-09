@@ -31,7 +31,10 @@ namespace TikkieAPI
         /// <exception cref="ArgumentException">If the API Key is null or empty.</exception>
         /// <exception cref="FileNotFoundException">If the private key pem file doesn't exist in the specified location.</exception>
         /// <exception cref="InvalidDataException">If the RSA private key PEM file cannot be read.</exception>
-        public TikkieClient(string apiKey, string privateKeyPath, bool useTestEnvironment = false)
+        public TikkieClient(
+            string apiKey, 
+            string privateKeyPath, 
+            bool useTestEnvironment = false)
         {
             Configuration = new TikkieConfiguration(apiKey, privateKeyPath, useTestEnvironment);
             var authorizedRequestsHandler = new AuthorizedRequestsHandler(Configuration);
@@ -48,7 +51,10 @@ namespace TikkieAPI
         /// <param name="platformRequestsHandler">Used for injecting the PlatformRequestHandler</param>
         /// <param name="userRequestsHandler">Used for injecting the UserRequestHandler</param>
         /// <param name="paymentRequestsHandler">Used for injecting the PaymentRequestHandler</param>
-        internal TikkieClient(IPlatformRequestsHandler platformRequestsHandler, IUserRequestsHandler userRequestsHandler, IPaymentRequestsHandler paymentRequestsHandler)
+        internal TikkieClient(
+            IPlatformRequestsHandler platformRequestsHandler, 
+            IUserRequestsHandler userRequestsHandler, 
+            IPaymentRequestsHandler paymentRequestsHandler)
         {
             _platformRequestsHandler = platformRequestsHandler ?? throw new ArgumentNullException(nameof(platformRequestsHandler));
             _userRequestsHandler = userRequestsHandler ?? throw new ArgumentNullException(nameof(userRequestsHandler));
