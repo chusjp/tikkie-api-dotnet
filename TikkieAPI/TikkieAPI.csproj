@@ -8,12 +8,13 @@
     <PackageProjectUrl>https://github.com/chusjp/tikkie-api-dotnet/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/chusjp/tikkie-api-dotnet/</RepositoryUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageReleaseNotes>Initial 1.0.0 release</PackageReleaseNotes>
+    <PackageReleaseNotes>Code improvements and includes XML documentation.</PackageReleaseNotes>
     <Copyright>Copyright 2019</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryType>git</RepositoryType>
     <PackageTags>tikkie payments api-client</PackageTags>
     <NeutralLanguage>en-US</NeutralLanguage>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
