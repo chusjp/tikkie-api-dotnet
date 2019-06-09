@@ -38,7 +38,7 @@
         /// <param name="platformToken">Identifies to which platform the user is enrolled.</param>
         /// <returns>The User url suffix.</returns>
         public static string UserUrlSuffix(string platformToken) 
-            => $"/tikkie/platforms/{platformToken}/users";
+            => $"{PlatformUrlSuffix}/{platformToken}/users";
 
         /// <summary>
         /// Creates the url suffix to be appended to a base url for Payment Request creations.
@@ -48,7 +48,7 @@
         /// <param name="bankAccountToken">Identifies to which account of the user the request is made.</param>
         /// <returns>The payment creation url suffix<./returns>
         public static string PaymentCreationUrlSuffix(string platformToken, string userToken, string bankAccountToken)
-            => $"/tikkie/platforms/{platformToken}/users/{userToken}/bankaccounts/{bankAccountToken}/paymentrequests";
+            => $"{PlatformUrlSuffix}/{platformToken}/users/{userToken}/bankaccounts/{bankAccountToken}/paymentrequests";
 
         /// <summary>
         /// Creates the url suffix to be appended to a base url for getting the User Payment Requests.
@@ -57,7 +57,7 @@
         /// <param name="userToken">Identifies to which user the request is made.</param>
         /// <returns>The get user payments url suffix.</returns>
         public static string GetUserPaymentsUrlSuffix(string platformToken, string userToken)
-            => $"/tikkie/platforms/{platformToken}/users/{userToken}/paymentrequests";
+            => $"{PlatformUrlSuffix}/{platformToken}/users/{userToken}/paymentrequests";
 
         /// <summary>
         /// Creates the url suffix to be appended to a base url for getting a Single Payment Request.
@@ -67,6 +67,6 @@
         /// <param name="paymentRequestToken">Identifies the accessed payment request.</param>
         /// <returns>The get single payment url suffix.</returns>
         public static string GetPaymentUrlSuffix(string platformToken, string userToken, string paymentRequestToken)
-            => $"/tikkie/platforms/{platformToken}/users/{userToken}/paymentrequests/{paymentRequestToken}";
+            => $"{PlatformUrlSuffix}/{platformToken}/users/{userToken}/paymentrequests/{paymentRequestToken}";
     }
 }
