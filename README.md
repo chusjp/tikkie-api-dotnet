@@ -66,7 +66,7 @@ PlaformResponse response = await tikkieClient.CreatePlatformAsync(
     {
         Name = "New Platform",
         Email = "user@emailaddress.com",                // Optional
-        NotificationUrl = "notifyme@emailaddress.com"   // Optional
+        NotificationUrl = "notifyme@emailaddress.com",   // Optional
         PhoneNumber = "06xxxxxxxx",
         Usage = PlatformUsage.PaymentRequestForMyself
     });
